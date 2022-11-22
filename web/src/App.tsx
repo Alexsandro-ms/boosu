@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './components/Header';
+import AppRoutes from './routes';
 import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
   return (
     <>
-      <Header />
+      <AppRoutes />
       <GlobalStyles />
     </>
   );
