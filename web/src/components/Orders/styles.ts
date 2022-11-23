@@ -6,4 +6,6 @@ export const Container = styled.div`
   margin: 2.5rem auto;
   display: flex;
   gap: 2rem;
+  padding: 0 25px;
+  flex-wrap: wrap;
 `;
