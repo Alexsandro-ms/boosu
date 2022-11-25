@@ -1,33 +1,37 @@
 import { Router } from 'express';
 
+// Categorias
+import { createCategories } from './app/useCases/categories/CreateCategories';
+import { listCategories } from './app/useCases/categories/ListCategories';
+
 export const router = Router();
 
-// List Categories
-router.get('/categories', () => console.log('Lista de categorias'));
+// Rota para listar categorias.
+router.get('/categories', listCategories);
 
-// Create Categories
-router.post('/categories', () => console.log('Criar de categorias'));
+// Rota de criação de categorias.
+router.post('/categories', createCategories);
 
-// List Products
-router.get('/products', () => console.log('Lista de produtos'));
+// Rota para listar produtos.
+router.get('/products', () => console.log('Listar produtos'));
 
-// Create Products
+// Rota para criar produtos.
 router.post('/products', () => console.log('Criar produtos'));
 // router.post('/products', upload.single('image'), createProduct);
 
-// Get Products by Category
+// Rota para receber produtos por categoria.
 router.get('/categories/:categoryId/products', () =>
   console.log('Listar produtos por categorias')
 );
 
-// List Orders
+// Rota de listagem de pedidos.
 router.get('/orders', () => console.log('Listar pedidos'));
 
-// Create Order
+// Rota para criar pedidos.
 router.post('/orders', () => console.log('criar pedido'));
 
-// Change Order Status
+// Rota para mudar o status do pedido.
 router.patch('/orders/:orderId', () => console.log('Mudar Status do pedido'));
 
-// Delete / Cancel Order
+// Rota para cancler / deletar pedido.
 router.delete('/orders/:orderId', () => console.log('deletar/cancelar pedido'));
