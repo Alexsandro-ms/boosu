@@ -5,14 +5,16 @@ import multer from 'multer';
 // Categorias
 import { createCategories } from './app/useCases/categories/CreateCategories';
 import { listCategories } from './app/useCases/categories/ListCategories';
-import { cancelOrder } from './app/useCases/orders/cancelOrder';
-import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
-import { createOrder } from './app/useCases/orders/createOrder';
-import { listOrders } from './app/useCases/orders/listOrders';
 
 // Produtos
 import { createProduct } from './app/useCases/products/CreateProduct';
 import { listProducts } from './app/useCases/products/ListProducts';
+
+// Ordens
+import { cancelOrder } from './app/useCases/orders/cancelOrder';
+import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
+import { createOrder } from './app/useCases/orders/createOrder';
+import { listOrders } from './app/useCases/orders/listOrders';
 
 export const router = Router();
 
