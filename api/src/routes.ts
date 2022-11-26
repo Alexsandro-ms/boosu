@@ -5,6 +5,10 @@ import multer from 'multer';
 // Categorias
 import { createCategories } from './app/useCases/categories/CreateCategories';
 import { listCategories } from './app/useCases/categories/ListCategories';
+import { cancelOrder } from './app/useCases/orders/cancelOrder';
+import { changeOrderStatus } from './app/useCases/orders/changeOrderStatus';
+import { createOrder } from './app/useCases/orders/createOrder';
+import { listOrders } from './app/useCases/orders/listOrders';
 
 // Produtos
 import { createProduct } from './app/useCases/products/CreateProduct';
@@ -43,13 +47,13 @@ router.get('/categories/:categoryId/products', () =>
 );
 
 // Rota de listagem de pedidos.
-router.get('/orders', () => console.log('Listar pedidos'));
+router.get('/orders', listOrders);
 
 // Rota para criar pedidos.
-router.post('/orders', () => console.log('criar pedido'));
+router.post('/orders', createOrder);
 
 // Rota para mudar o status do pedido.
-router.patch('/orders/:orderId', () => console.log('Mudar Status do pedido'));
+router.patch('/orders/:orderId', changeOrderStatus);
 
 // Rota para cancler / deletar pedido.
-router.delete('/orders/:orderId', () => console.log('deletar/cancelar pedido'));
+router.delete('/orders/:orderId', cancelOrder);
