@@ -3,10 +3,11 @@ import { Router } from 'express';
 // Categorias
 import { createCategories } from './app/useCases/categories/CreateCategories';
 import { listCategories } from './app/useCases/categories/ListCategories';
+import { cancelOrder } from './app/useCases/orders/cancelOrder';
 
 // Produtos
-import { createProduct } from './app/useCases/products/createProduct';
-import { listProducts } from './app/useCases/products/listProducts';
+import { createProduct } from './app/useCases/products/CreateProduct';
+import { listProducts } from './app/useCases/products/ListProducts';
 
 export const router = Router();
 
@@ -38,4 +39,4 @@ router.post('/orders', () => console.log('criar pedido'));
 router.patch('/orders/:orderId', () => console.log('Mudar Status do pedido'));
 
 // Rota para cancler / deletar pedido.
-router.delete('/orders/:orderId', () => console.log('deletar/cancelar pedido'));
+router.delete('/orders/:orderId', cancelOrder);
