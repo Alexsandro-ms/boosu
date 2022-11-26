@@ -9,6 +9,7 @@ import { listCategories } from './app/useCases/categories/ListCategories';
 // Produtos
 import { createProduct } from './app/useCases/products/CreateProduct';
 import { listProducts } from './app/useCases/products/ListProducts';
+import { listProductsByCategories } from './app/useCases/products/ListProductsByCategories';
 
 // Ordens
 import { cancelOrder } from './app/useCases/orders/cancelOrder';
@@ -44,9 +45,7 @@ router.get('/products', listProducts);
 router.post('/products', upload.single('image'), createProduct);
 
 // Rota para receber produtos por categoria.
-router.get('/categories/:categoryId/products', () =>
-  console.log('Listar produtos por categorias')
-);
+router.get('/categories/:categoryId/products', listProductsByCategories);
 
 // Rota de listagem de pedidos.
 router.get('/orders', listOrders);
