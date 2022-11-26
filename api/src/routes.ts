@@ -4,6 +4,10 @@ import { Router } from 'express';
 import { createCategories } from './app/useCases/categories/CreateCategories';
 import { listCategories } from './app/useCases/categories/ListCategories';
 
+// Produtos
+import { createProduct } from './app/useCases/products/createProduct';
+import { listProducts } from './app/useCases/products/listProducts';
+
 export const router = Router();
 
 // Rota para listar categorias.
@@ -13,10 +17,10 @@ router.get('/categories', listCategories);
 router.post('/categories', createCategories);
 
 // Rota para listar produtos.
-router.get('/products', () => console.log('Listar produtos'));
+router.get('/products', listProducts);
 
 // Rota para criar produtos.
-router.post('/products', () => console.log('Criar produtos'));
+router.post('/products', createProduct);
 // router.post('/products', upload.single('image'), createProduct);
 
 // Rota para receber produtos por categoria.
