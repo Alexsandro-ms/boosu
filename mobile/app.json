@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "boosu-mobile",
+    "name": "Boosu - para garçons",
     "slug": "mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#d73035"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
