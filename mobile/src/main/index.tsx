@@ -9,8 +9,10 @@ import { Container } from './styles';
 // Tipagem de dados retornados da api
 import { Category } from '../types/Category';
 import { Product } from '../types/Product';
+import { Cart } from '../components/Cart';
 
 function Main() {
+  const [selectedTable, setSelectedTable] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -28,6 +30,15 @@ function Main() {
     <Container>
       <Header />
       <Menu products={products} />
+      {selectedTable && (
+        <Cart
+          cartItems={[]}
+          onAdd={() => alert('Cart')}
+          onDecrement={() => alert('Cart')}
+          onConfirmOrder={() => alert('Cart')}
+          selectedTable={selectedTable}
+        />
+      )}
     </Container>
   );
 }
