@@ -67,7 +67,6 @@ function Main() {
     setSelectedTable('');
     setCartItems([]);
   }
-
   // Função responsável por adicionar produtos ao carrinho
   function handleAddToCart(product: Product) {
     if (!selectedTable) {
@@ -90,6 +89,31 @@ function Main() {
       newCartItems[itemIndex] = {
         ...item,
         quantity: item.quantity + 1,
+      };
+      return newCartItems;
+    });
+  }
+  // Função responsável por decrementar produtos do carrinho
+  function handleDecrementCartItem(product: Product) {
+    setCartItems((prevState) => {
+      const itemIndex = prevState.findIndex(
+        (cartItem) => cartItem.product._id === product._id
+      );
+
+      const item = prevState[itemIndex];
+      const newCartItem = [...prevState];
+
+      if (item.quantity === 1) {
+        newCartItem.splice(itemIndex, 1);
+
+        return newCartItem;
+      }
+
+      const newCartItems = [...prevState];
+
+      newCartItems[itemIndex] = {
+        ...item,
+        quantity: item.quantity - 1,
       };
       return newCartItems;
     });
