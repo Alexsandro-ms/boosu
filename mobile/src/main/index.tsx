@@ -43,6 +43,18 @@ function Main() {
       .catch((error) => alert(`Erro: ${error}`));
   }, []);
 
+  // Função que seleciona uma categoria
+  async function handleSelectCategory(categoryId: string) {
+    const route = !categoryId
+      ? '/products'
+      : `/categories/${categoryId}/products`;
+
+    setIsLoadingProducts(true);
+    const { data } = await api.get(route);
+
+    setProducts(data);
+    setIsLoadingProducts(false);
+  }
   // Função responsável por armazenar a mesa
   function handleSaveTable(table: string) {
     setSelectedTable(table);
