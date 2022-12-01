@@ -11,6 +11,10 @@ import { Categories } from '../components/Categories';
 import { Cart } from '../components/Cart';
 import { Text } from '../components/Text';
 import { Button } from '../components/Button';
+import { TableModal } from '../components/TableModal';
+
+import { Empty } from '../components/Icons/Empty';
+
 import {
   CategoriesContainer,
   CenteredContainer,
@@ -22,8 +26,10 @@ import {
 
 function Main() {
   const [selectedTable, setSelectedTable] = useState(''); // Selecionar Mesa
+  const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [products, setProducts] = useState<Product[]>([]); // Lista de Produtos
   const [categories, setCategories] = useState<Category[]>([]); // Lista de Categorias
+
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
@@ -36,6 +42,11 @@ function Main() {
       })
       .catch((error) => alert(`Erro: ${error}`));
   }, []);
+
+  // Função responsável por armazenar a mesa
+  function handleSaveTable(table: string) {
+    setSelectedTable(table);
+  }
 
   return (
     <>
@@ -71,7 +82,7 @@ function Main() {
                   </MenuContainer>
                 ) : (
                   <CenteredContainer>
-                    {/* <Empty /> */}
+                    <Empty />
                     <Text color="#666" style={{ marginTop: 24 }}>
                       Nenhum produto encontrado! :(
                     </Text>
@@ -100,6 +111,12 @@ function Main() {
           )}
         </FooterContainer>
       </Footer>
+
+      <TableModal
+        onSave={handleSaveTable}
+        visible={isTableModalVisible}
+        onClose={() => setIsTableModalVisible(false)}
+      />
     </>
   );
 }
