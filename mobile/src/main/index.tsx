@@ -124,7 +124,7 @@ function Main() {
       <Container>
         <Header
           selectedTable={selectedTable}
-          // onCancelOrder={handleResetOrder}
+          onCancelOrder={handleResetOrder}
         />
         {isLoading ? (
           <CenteredContainer>
@@ -135,7 +135,7 @@ function Main() {
             <CategoriesContainer>
               <Categories
                 categories={categories}
-                // onSelectCategory={handleSelectCategory}
+                onSelectCategory={handleSelectCategory}
               />
             </CategoriesContainer>
             {isLoadingProducts ? (
@@ -146,10 +146,7 @@ function Main() {
               <>
                 {products.length > 0 ? (
                   <MenuContainer>
-                    <Menu
-                      products={products}
-                      // onAddToCart={handleAddToCart}
-                    />
+                    <Menu products={products} onAddToCart={handleAddToCart} />
                   </MenuContainer>
                 ) : (
                   <CenteredContainer>
@@ -167,17 +164,20 @@ function Main() {
       <Footer>
         <FooterContainer>
           {!selectedTable && (
-            <Button onPress={() => alert('click')} disabled={isLoading}>
+            <Button
+              onPress={() => setIsTableModalVisible(true)}
+              disabled={isLoading}
+            >
               Novo Pedido
             </Button>
           )}
           {selectedTable && (
             <Cart
-              cartItems={[]}
-              onAdd={() => alert('A')}
-              onConfirmOrder={() => alert('A')}
-              onDecrement={() => alert('A')}
-              selectedTable="2"
+              cartItems={cartItems}
+              onAdd={handleAddToCart}
+              onDecrement={handleDecrementCartItem}
+              onConfirmOrder={handleResetOrder}
+              selectedTable={selectedTable}
             />
           )}
         </FooterContainer>
