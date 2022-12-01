@@ -13,9 +13,12 @@ import { Cart } from '../components/Cart';
 
 function Main() {
   const [selectedTable, setSelectedTable] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
   useEffect(() => {
     Promise.all([api.get('/categories'), api.get('/products')])
@@ -26,6 +29,7 @@ function Main() {
       })
       .catch((error) => alert(`Erro: ${error}`));
   }, []);
+
   return (
     <Container>
       <Header />
