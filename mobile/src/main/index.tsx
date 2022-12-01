@@ -1,22 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native';
 
-// Funções uteis
 import { api } from '../utils/api';
-// Componentes e estilos
-import { Header } from '../components/Header';
-import { Menu } from '../components/Menu';
-import { Container } from './styles';
-// Tipagem de dados retornados da api
 import { Category } from '../types/Category';
 import { Product } from '../types/Product';
+
+import { Header } from '../components/Header';
+import { Menu } from '../components/Menu';
+import { Categories } from '../components/Categories';
 import { Cart } from '../components/Cart';
+import { Text } from '../components/Text';
+import { Button } from '../components/Button';
+import {
+  CategoriesContainer,
+  CenteredContainer,
+  Container,
+  Footer,
+  FooterContainer,
+  MenuContainer,
+} from './styles';
 
 function Main() {
-  const [selectedTable, setSelectedTable] = useState('');
-
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-
+  const [selectedTable, setSelectedTable] = useState(''); // Selecionar Mesa
+  const [products, setProducts] = useState<Product[]>([]); // Lista de Produtos
+  const [categories, setCategories] = useState<Category[]>([]); // Lista de Categorias
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
@@ -31,19 +38,69 @@ function Main() {
   }, []);
 
   return (
-    <Container>
-      <Header />
-      <Menu products={products} />
-      {selectedTable && (
-        <Cart
-          cartItems={[]}
-          onAdd={() => alert('Cart')}
-          onDecrement={() => alert('Cart')}
-          onConfirmOrder={() => alert('Cart')}
+    <>
+      <Container>
+        <Header
           selectedTable={selectedTable}
+          // onCancelOrder={handleResetOrder}
         />
-      )}
-    </Container>
+        {isLoading ? (
+          <CenteredContainer>
+            <ActivityIndicator color="#D73035" size={'large'} />
+          </CenteredContainer>
+        ) : (
+          <>
+            <CategoriesContainer>
+              <Categories
+                categories={categories}
+                // onSelectCategory={handleSelectCategory}
+              />
+            </CategoriesContainer>
+            {isLoadingProducts ? (
+              <CenteredContainer>
+                <ActivityIndicator color="#D73035" size={'large'} />
+              </CenteredContainer>
+            ) : (
+              <>
+                {products.length > 0 ? (
+                  <MenuContainer>
+                    <Menu
+                      products={products}
+                      // onAddToCart={handleAddToCart}
+                    />
+                  </MenuContainer>
+                ) : (
+                  <CenteredContainer>
+                    {/* <Empty /> */}
+                    <Text color="#666" style={{ marginTop: 24 }}>
+                      Nenhum produto encontrado! :(
+                    </Text>
+                  </CenteredContainer>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </Container>
+      <Footer>
+        <FooterContainer>
+          {!selectedTable && (
+            <Button onPress={() => alert('click')} disabled={isLoading}>
+              Novo Pedido
+            </Button>
+          )}
+          {selectedTable && (
+            <Cart
+              cartItems={[]}
+              onAdd={() => alert('A')}
+              onConfirmOrder={() => alert('A')}
+              onDecrement={() => alert('A')}
+              selectedTable="2"
+            />
+          )}
+        </FooterContainer>
+      </Footer>
+    </>
   );
 }
 
