@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { FlatList } from 'react-native';
-
 import { Product } from '../../types/Product';
+import { formatCurrency } from '../../utils/formatCurrency';
 import { PlusCircle } from '../Icons/PlusCircle';
-
 import { ProductModal } from '../ProductModal';
 import { Text } from '../Text';
 
 import {
-  AddToCartButton,
   ProductContainer,
-  ProductDetails,
   ProductImage,
+  ProductDetails,
   Separator,
+  AddToCartButton,
 } from './styles';
 
 interface MenuProps {
@@ -20,7 +19,7 @@ interface MenuProps {
   products: Product[];
 }
 
-export function Menu({ products, onAddToCart }: MenuProps) {
+export function Menu({ onAddToCart, products }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setselectedProduct] = useState<null | Product>(null);
 
@@ -32,12 +31,12 @@ export function Menu({ products, onAddToCart }: MenuProps) {
     <>
       <FlatList
         data={products}
-        keyExtractor={(product) => product._id}
         style={{ marginTop: 32 }}
         contentContainerStyle={{ paddingHorizontal: 24 }}
+        keyExtractor={(product) => product._id}
         ItemSeparatorComponent={Separator}
         renderItem={({ item: product }) => (
-          <ProductContainer onPress={() => alert('Detalhes')}>
+          <ProductContainer onPress={() => handleOpenModal(product)}>
             <ProductImage
               source={{
                 uri: `http://192.168.0.10:3001/uploads/${product.imagePath}`,
@@ -49,7 +48,7 @@ export function Menu({ products, onAddToCart }: MenuProps) {
                 {product.description}
               </Text>
               <Text size={14} weight="600">
-                {product.price}
+                {formatCurrency(product.price)}
               </Text>
             </ProductDetails>
             <AddToCartButton onPress={() => onAddToCart(product)}>
@@ -58,6 +57,7 @@ export function Menu({ products, onAddToCart }: MenuProps) {
           </ProductContainer>
         )}
       ></FlatList>
+
       <ProductModal
         visible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
