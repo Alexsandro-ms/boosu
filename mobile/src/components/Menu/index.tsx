@@ -11,14 +11,13 @@ import {
 } from './styles';
 
 interface MenuProps {
-  // onAddToCart: (product: Product) => void;
+  onAddToCart: (product: Product) => void;
   products: Product[];
 }
 
-export function Menu({ products }: MenuProps) {
+export function Menu({ products, onAddToCart }: MenuProps) {
   return (
     <>
-      {/* FlatList */}
       <FlatList
         data={products}
         keyExtractor={(product) => product._id}
@@ -41,7 +40,7 @@ export function Menu({ products }: MenuProps) {
                 {product.price}
               </Text>
             </ProductDetails>
-            <AddToCartButton onPress={() => alert('Adicionado ao carrinho')}>
+            <AddToCartButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCartButton>
           </ProductContainer>
