@@ -4,6 +4,7 @@ import { ActivityIndicator } from 'react-native';
 import { api } from '../utils/api';
 import { Category } from '../types/Category';
 import { Product } from '../types/Product';
+import { CartItem } from '../types/CartItem';
 
 import { Header } from '../components/Header';
 import { Menu } from '../components/Menu';
@@ -27,6 +28,8 @@ import {
 function Main() {
   const [selectedTable, setSelectedTable] = useState(''); // Selecionar Mesa
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [products, setProducts] = useState<Product[]>([]); // Lista de Produtos
   const [categories, setCategories] = useState<Category[]>([]); // Lista de Categorias
 
@@ -58,6 +61,11 @@ function Main() {
   // Função responsável por armazenar a mesa
   function handleSaveTable(table: string) {
     setSelectedTable(table);
+  }
+  // Função responsável por resetar order
+  function handleResetOrder() {
+    setSelectedTable('');
+    setCartItems([]);
   }
 
   return (
