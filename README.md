@@ -56,10 +56,6 @@ Com o terminal, acesse o diretório que foi clonado o repositório.
   npm run dev ## ou yarn dev
 ```
 
-### Rodando
-
-Após Rodar o servidor
-
 ## Documentação da API
 
 ### Categorias
