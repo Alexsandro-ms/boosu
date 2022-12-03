@@ -200,4 +200,6 @@ Após instalar as dependências e rodar o servidor, baixe o app do expo go na pl
 
 ## Licença
 
+Para informações de uso, modificação, distribuição e etc... Ler a licença abaixo:
+
 [MIT](https://choosealicense.com/licenses/mit/)
