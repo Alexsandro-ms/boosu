@@ -16,9 +16,9 @@ Criação de pedidos a partir do app mobile e alteração, do status de pedido a
 
 ![App Screenshot](https://i.ibb.co/Zmvt0sX/ajdb-GVo-DWO.gif/468x300?text=App+Screenshot+Here)
 
-## Api
-
 ## Stack utilizada
+
+## Api
 
 **Front-end:** React, Axios, Styled Components e Typescript.
 
