@@ -48,7 +48,7 @@ Para rodar esse projeto, você deverá criar um arquivo .env na pasta de api, e 
 
 ### Instalação
 
-Com o terminal, acesse o diretório que foi clonado o repositório.
+Em seu terminal, acesse o diretório que foi clonado o repositório, logo então:
 
 ```bash
   cd api
