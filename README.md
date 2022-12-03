@@ -18,13 +18,13 @@ Criação de pedidos a partir do app mobile e alteração, do status de pedido a
 
 ## Stack utilizada
 
-## Api
-
 **Front-end:** React, Axios, Styled Components e Typescript.
 
 **Back-end:** Node, Express, Multer, Socket.Io, Typescript, Mongoose e MongoDb Atlas.
 
 **Mobile:** React Native, Styled components, Axios, Expo e Typescript.
+
+## Api
 
 ### Funcionalidades
 
